@@ -7,6 +7,8 @@ export default function MainLayout(props: React.PropsWithChildren): JSX.Element 
 
   return <DefaultLayout>
     <Navbar />
-    {children}
+    <div className='px-4 pt-3'>
+      {children}
+    </div>
   </DefaultLayout>
 }

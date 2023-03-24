@@ -1,15 +1,15 @@
 import React from 'react'
-import { Grid, IconButton } from '@mui/material'
+import { IconButton } from '@mui/material'
 import { Menu as MenuIcon } from '@mui/icons-material'
+import classNames from 'classnames'
 
 export default function Navbar(props: React.PropsWithChildren): JSX.Element {
-  return <div>
-    <Grid container spacing={2}>
-      <Grid item xs={2}>
-        <IconButton color='black' aria-label='Menu'>
-          <MenuIcon />
-        </IconButton>
-      </Grid>
-    </Grid>
+
+  const classes = classNames(['p-2'])
+
+  return <div className={classes}>
+    <IconButton color='black' aria-label='Menu'>
+      <MenuIcon />
+    </IconButton>
   </div>
 }
