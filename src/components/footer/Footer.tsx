@@ -17,7 +17,7 @@ export default function Footer(props: React.ComponentProps<any>): JSX.Element {
       All rights reserved &copy; 2023
     </div>
     <div>
-      Designed with <FavoriteTwoTone fontSize='xsmall' /> by <a href='https://adnanbabakan.js.org' target='_blank'>Adnan Babakan</a>
+      Designed with <FavoriteTwoTone fontSize='xsmall' /> by <Link href='https://adnanbabakan.js.org' target='_blank'>Adnan Babakan</Link>
     </div>
   </div>
 }

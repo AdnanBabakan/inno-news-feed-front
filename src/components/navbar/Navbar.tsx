@@ -1,22 +1,31 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import { IconButton } from '@mui/material'
+import { Button, IconButton } from '@mui/material'
 import { Menu as MenuIcon } from '@mui/icons-material'
 import { AccountCircleTwoTone as AccountCircleTwoToneIcon } from '@mui/icons-material'
+import useScrollHeight from '@/components/misc/ScrollHeight'
 
 export default function Navbar(props: React.PropsWithChildren): JSX.Element {
   const { className } = props
 
-  return <div className={classNames(['flex items-center p-2', className])}>
-    <IconButton color='black' aria-label='Menu'>
+  const { scrollHeight } = useScrollHeight()
+
+  return <div
+    className={classNames([
+      'flex items-center fixed top-0 right-0 left-0 z-50 bg-white px-2 py-1',
+      { 'shadow-lg': scrollHeight > 100 },
+      className,
+    ])}
+  >
+    <IconButton color='black' aria-label='Menu' className='mr-1'>
       <MenuIcon />
     </IconButton>
     <div className='font-bold mr-1'>INR</div>
     <div className='text-xs text-gray-400'>| <span className='italic'>Inno News Reader</span></div>
     <div className='flex-grow' />
-    <IconButton aria-label='account' size='large'>
-      <AccountCircleTwoToneIcon fontSize='large'/>
-    </IconButton>
+    <Button aria-label='account' startIcon={<AccountCircleTwoToneIcon />} variant='outlined' size='small'>
+      Sign in
+    </Button>
   </div>
 }
