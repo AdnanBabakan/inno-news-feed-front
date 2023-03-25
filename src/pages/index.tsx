@@ -145,14 +145,13 @@ export default function Index(): JSX.Element {
     <TextField
       placeholder='Search by title, publisher, keywords...'
       fullWidth
-      filled
       size='small'
       className='mb-4'
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>
-            <IconButton edge='end'>
-              <SearchTwoToneIcon />
+            <IconButton edge='end' size='small'>
+              <SearchTwoToneIcon fontSize='small' />
             </IconButton>
           </InputAdornment>
         ),
