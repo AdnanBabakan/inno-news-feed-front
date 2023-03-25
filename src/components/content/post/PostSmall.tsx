@@ -11,15 +11,17 @@ import Link from 'next/link'
 export default function PostSmall(props: PostPropsInterface): JSX.Element {
   const { post, className } = props
 
-  return <Link href={'/post/' + post.id} className={classNames(['w-full h-full flex flex-col', className])}>
+  return <div className={classNames(['w-full h-full flex flex-col', className])}>
     <div className='text-xs text-gray-300'>
       {post.date}
     </div>
-    <div className='font-serif font-bold text-sm leading-relaxed'>
+    <Link href={'/post/' + post.id} className='font-serif font-bold text-sm leading-relaxed'>
       {excerpt(post.title, 40)}
-    </div>
+    </Link>
     <NewsSourceXSmall source={post.source} className='mt-1 mb-3' />
-    <Image src={post.image} alt={post.title} width={2000} height={2000} className='w-full h-full object-cover' />
+    <Link href={'/post/' + post.id}>
+      <Image src={post.image} alt={post.title} width={2000} height={2000} className='w-full h-full object-cover' />
+    </Link>
     <div className='text-xs text-gray-400 mt-2'>
       {post.readingTime.toLocaleUpperCase()}
     </div>
@@ -28,5 +30,5 @@ export default function PostSmall(props: PostPropsInterface): JSX.Element {
     </div>
     <div className='flex-grow' />
     <Divider className='mt-3' />
-  </Link>
+  </div>
 }
