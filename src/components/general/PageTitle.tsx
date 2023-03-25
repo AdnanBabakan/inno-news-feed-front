@@ -5,9 +5,7 @@ import classNames from 'classnames'
 export default function PageTitle(props: React.PropsWithChildren): JSX.Element {
   const { className } = props
 
-  const classes = classNames(['text-3xl', className])
-
-  return <div className={classes}>
+  return <div className={classNames(['text-3xl', className])}>
     { props.children }
   </div>
 }

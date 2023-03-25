@@ -4,10 +4,9 @@ import { Menu as MenuIcon } from '@mui/icons-material'
 import classNames from 'classnames'
 
 export default function Navbar(props: React.PropsWithChildren): JSX.Element {
+  const { className } = props
 
-  const classes = classNames(['p-2'])
-
-  return <div className={classes}>
+  return <div className={classNames(['p-2', className])}>
     <IconButton color='black' aria-label='Menu'>
       <MenuIcon />
     </IconButton>
