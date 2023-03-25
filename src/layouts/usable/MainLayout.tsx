@@ -8,7 +8,7 @@ export default function MainLayout(props: React.PropsWithChildren): JSX.Element 
 
   return <DefaultLayout>
     <Navbar />
-    <div className='px-4 pt-3'>
+    <div className='px-4 pt-2'>
       {children}
     </div>
     <Footer />
