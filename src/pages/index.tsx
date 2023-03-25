@@ -2,9 +2,10 @@ import React from 'react'
 import MainLayout from '@/layouts/usable/MainLayout'
 import PageTitle from '@/components/general/PageTitle'
 import Post from '@/components/content/post/Post'
-import { Grid } from '@mui/material'
+import { Grid, IconButton, InputAdornment, TextField } from '@mui/material'
 import PostPropsObjectInterface from '@/components/content/post/interfaces/PostPropsObjectInterface'
 import PostSmall from '@/components/content/post/PostSmall'
+import { SearchTwoTone as SearchTwoToneIcon } from '@mui/icons-material'
 
 const testPosts: PostPropsObjectInterface[] = [
   {
@@ -141,11 +142,27 @@ const testPosts: PostPropsObjectInterface[] = [
 
 export default function Index(): JSX.Element {
   return <MainLayout>
+    <TextField
+      placeholder='Search by title, publisher, keywords...'
+      fullWidth
+      filled
+      size='small'
+      className='mb-4'
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position='end'>
+            <IconButton edge='end'>
+              <SearchTwoToneIcon />
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
     <PageTitle className='font-bold mb-4'>Discover</PageTitle>
     <div className='grid gap-2 grid-cols-2'>
       {testPosts.map((post, index) => {
-        if([0, 1, 2].includes((index + 5) % 5)) {
-          return <Post post={post} key={post.id} className='col-span-2' />;
+        if ([0, 1, 2].includes((index + 5) % 5)) {
+          return <Post post={post} key={post.id} className='col-span-2' />
         } else {
           return <PostSmall post={post} key={post.id} className='col-span-1' />
         }
