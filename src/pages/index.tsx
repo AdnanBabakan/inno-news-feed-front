@@ -3,7 +3,8 @@ import MainLayout from '@/layouts/usable/MainLayout'
 import PageTitle from '@/components/general/PageTitle'
 import Post from '@/components/content/post/Post'
 import { Grid } from '@mui/material'
-import { PostPropsObjectInterface } from '@/components/content/post/interfaces/PostPropsObjectInterface'
+import PostPropsObjectInterface from '@/components/content/post/interfaces/PostPropsObjectInterface'
+import PostSmall from '@/components/content/post/PostSmall'
 
 const testPosts: PostPropsObjectInterface[] = [
   {
@@ -27,8 +28,8 @@ const testPosts: PostPropsObjectInterface[] = [
     excerpt: 'A federal judge has ruled that a number of former officials from President Donald J. Trump’s administration — including his former chief of staff, Mark Meadows — cannot invoke executive privilege to avoid testifying to a grand jury investigating Mr. Trump’s efforts to overturn the 2020 election.',
     source: {
       id: '215634332',
-      image: 'https://theme.zdassets.com/theme_assets/968999/d8a347b41db1ddee634e2d67d08798c102ef09ac.jpg',
-      name: 'New Your Times',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Cnn_logo_red_background.png',
+      name: 'CNN',
     },
     readingTime: '20 minutes read',
   },
@@ -36,8 +37,11 @@ const testPosts: PostPropsObjectInterface[] = [
 
 export default function Index(): JSX.Element {
   return <MainLayout>
-    <PageTitle className='font-bold'>Discover</PageTitle>
-    <div className='grid gap-2 grid-cols-1 mt-4'>
+    <PageTitle className='font-bold mb-4'>Discover</PageTitle>
+    <div className='grid gap-2 grid-cols-2 mb-2'>
+      {testPosts.map(post => <PostSmall post={post} key={post.id} className='mb-4' />)}
+    </div>
+    <div className='grid gap-2 grid-cols-1'>
       {testPosts.map(post => <Post post={post} key={post.id} className='mb-4' />)}
     </div>
   </MainLayout>

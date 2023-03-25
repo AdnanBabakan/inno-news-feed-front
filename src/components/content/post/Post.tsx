@@ -4,8 +4,8 @@ import { Button, Card, CardContent, CardMedia, Divider, Typography } from '@mui/
 import { excerpt } from '@/utils/StringUtils'
 import Image from 'next/image'
 import classNames from 'classnames'
-import { PostPropsInterface } from '@/components/content/post/interfaces/PostPropsInterface'
 import NewsSourceSmall from '@/components/content/newsSources/NewsSourceSmall'
+import PostPropsInterface from '@/components/content/post/interfaces/PostPropsInterface'
 
 export default function Post(props: PostPropsInterface): JSX.Element {
   const { post, className } = props
@@ -22,13 +22,8 @@ export default function Post(props: PostPropsInterface): JSX.Element {
     <div className='text-sm text-gray-400 mt-2'>
       {post.readingTime.toLocaleUpperCase()}
     </div>
-    <div className='pt-3'>
-      <div className='font-serif leading-relaxed text-gray-800 text-sm'>
-        {excerpt(post.excerpt, 150)}
-      </div>
-    </div>
-    <div className='flex justify-end mt-3'>
-      <Button variant='text' size='small'>Continue Reading...</Button>
+    <div className='font-serif leading-relaxed text-gray-800 text-sm mt-2'>
+      {excerpt(post.excerpt, 150)}
     </div>
     <Divider className='mt-3' />
   </div>
