@@ -39,10 +39,10 @@ export default function Index(): JSX.Element {
   return <MainLayout>
     <PageTitle className='font-bold mb-4'>Discover</PageTitle>
     <div className='grid gap-2 grid-cols-2 mb-2'>
-      {testPosts.map(post => <PostSmall post={post} key={post.id} className='mb-4' />)}
+      {testPosts.map(post => <PostSmall post={post} key={post.id} />)}
     </div>
     <div className='grid gap-2 grid-cols-1'>
-      {testPosts.map(post => <Post post={post} key={post.id} className='mb-4' />)}
+      {testPosts.map(post => <Post post={post} key={post.id} />)}
     </div>
   </MainLayout>
 }
