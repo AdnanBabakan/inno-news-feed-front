@@ -6,10 +6,10 @@ import Link from 'next/link'
 export default function NewsSourceSmall(props: NewsSourcePropsInterface): JSX.Element {
   const { source, className } = props
 
-  return <Link href={'/publisher/' + source.id} className={classNames(['flex items-center', className])}>
+  return <div className={classNames(['flex items-center', className])}>
     <Avatar alt={source.name} src={source.image} sx={{ width: 25, height: 25 }} className='outline outline-1 outline-gray-300' />
     <div className='font-serif ml-2 text-sm text-gray-500'>
       {source.name}
     </div>
-  </Link>
+  </div>
 }

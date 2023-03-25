@@ -4,7 +4,6 @@ import { Button, Card, CardContent, CardMedia, Divider, Typography } from '@mui/
 import { excerpt } from '@/utils/StringUtils'
 import Image from 'next/image'
 import classNames from 'classnames'
-import NewsSourceSmall from '@/components/content/newsSources/NewsSourceSmall'
 import PostPropsInterface from '@/components/content/post/interfaces/PostPropsInterface'
 import NewsSourceXSmall from '@/components/content/newsSources/NewsSourceXSmall'
 import Link from 'next/link'
