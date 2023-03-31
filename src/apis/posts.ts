@@ -4,9 +4,10 @@ import { parseParams } from '@/utils/ParamsParser'
 
 export default function usePosts() {
   const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [pages, setPages] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  const [filters, setFilters] = useState({})
 
   const getPosts = async (filters = {}) => {
     setLoading(true)
@@ -14,6 +15,13 @@ export default function usePosts() {
     setPosts(response.data.data)
     setPages(response.data.last_page)
     setLoading(false)
+  }
+
+  const setFilter = (key, value) => {
+    setFilters({
+      ...filters,
+      [key]: value
+    })
   }
 
   return {
@@ -25,6 +33,9 @@ export default function usePosts() {
     setPages,
     currentPage,
     setCurrentPage,
-    getPosts
+    getPosts,
+    filters,
+    setFilters,
+    setFilter
   }
 }

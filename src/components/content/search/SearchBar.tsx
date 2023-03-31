@@ -2,8 +2,10 @@ import { IconButton, InputAdornment, TextField } from '@mui/material'
 import { SearchTwoTone as SearchTwoToneIcon } from '@mui/icons-material'
 import React from 'react'
 
-export default function SearchBar() : JSX.Element
+export default function SearchBar(props: React.ComponentProps<any>) : JSX.Element
 {
+  const { onChange } = props
+
   return <TextField
     placeholder='Search by title, publisher, keywords...'
     fullWidth
@@ -18,5 +20,6 @@ export default function SearchBar() : JSX.Element
         </InputAdornment>
       ),
     }}
+    onChange={onChange}
   />
 }
