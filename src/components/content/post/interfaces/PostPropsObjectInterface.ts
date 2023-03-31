@@ -7,5 +7,8 @@ export default interface PostPropsObjectInterface {
   published_at: string,
   excerpt: string
   by: string,
+  details: {
+    url: string
+  },
   source: NewsSourcePropsObjectInterface,
 }
