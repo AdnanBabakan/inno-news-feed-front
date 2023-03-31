@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react'
 import { Autocomplete, Chip, TextField } from '@mui/material'
 
 export default function Publishers(props: React.ComponentProps<any>): JSX.Element {
-  const { onChange, className } = props
+  const { defaultValue, onChange, className } = props
 
-  const { publishers, getPublishers, selectedPublishers, selectPublisher, removePublisher } = usePublishers()
+  const { publishers, getPublishers, selectedPublishers, setSelectedPublishers, selectPublisher, removePublisher } = usePublishers()
 
   useEffect(() => {
+    setSelectedPublishers(defaultValue)
     getPublishers()
   }, [])
 
@@ -40,7 +41,7 @@ export default function Publishers(props: React.ComponentProps<any>): JSX.Elemen
             return <Chip label={v} key={v} className='mr-1' onDelete={() => onPublisherRemove(index)} />
           })
         }
-      </div> : <div className='mt-2' />
+      </div> : <div className='mb-4' />
     }
   </div>
 }

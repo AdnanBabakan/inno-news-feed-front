@@ -1,20 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MainLayout from '@/layouts/usable/MainLayout'
 import PageTitle from '@/components/general/PageTitle'
 import Post from '@/components/content/post/Post'
-import { Alert, CircularProgress, Grid, IconButton, InputAdornment, Pagination, TextField } from '@mui/material'
-import PostPropsObjectInterface from '@/components/content/post/interfaces/PostPropsObjectInterface'
+import {
+  Alert,
+  CircularProgress,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  IconButton,
+  Pagination,
+} from '@mui/material'
 import PostSmall from '@/components/content/post/PostSmall'
-import { SearchTwoTone as SearchTwoToneIcon } from '@mui/icons-material'
 import usePosts from '@/apis/posts'
-import SearchBar from '@/components/content/search/SearchBar'
-import { parseParams } from '@/utils/ParamsParser'
 import _ from 'lodash'
 import FilterGroup from '@/components/content/search/FilterGroup'
 import dayjs from 'dayjs'
-import Publishers from '@/components/content/search/Publishers'
+import { TuneTwoTone as TuneTwoToneIcon, CloseTwoTone as CloseTwoToneIcon } from '@mui/icons-material'
 
 export default function Index(): JSX.Element {
+  const [filtersDialogOpen, setFiltersDialogOpen] = useState(false)
 
   const { posts, loading, getPosts, pages, currentPage, setCurrentPage, filters, setFilter } = usePosts()
 
@@ -49,14 +55,13 @@ export default function Index(): JSX.Element {
   }
 
   return <MainLayout>
-    <FilterGroup
-      onPublisherChange={handlePublisherChange}
-      onQueryChange={handleQueryChange}
-      onAfterChange={handleAfterChange}
-      onBeforeChange={handleBeforeChange}
-      className='mb-2'
-    />
-    <PageTitle className='font-bold mb-4'>Discover</PageTitle>
+    <div className='flex justify-between items-center'>
+      <PageTitle className='font-bold mb-4'>Discover</PageTitle>
+      <IconButton onClick={() => setFiltersDialogOpen(true)}>
+        <TuneTwoToneIcon />
+      </IconButton>
+    </div>
+    <Divider className='mb-3' />
     {
       loading ? <div className='flex justify-center my-2'>
         <CircularProgress />
@@ -79,5 +84,28 @@ export default function Index(): JSX.Element {
         </div> : <Alert severity='info'>No results found.</Alert>
       )
     }
+    <Dialog open={filtersDialogOpen} onClose={() => setFiltersDialogOpen(false)}>
+      <DialogTitle>
+        <div className='flex justify-between items-center'>
+          <div>Filters</div>
+          <IconButton onClick={() => setFiltersDialogOpen(false)}>
+            <CloseTwoToneIcon />
+          </IconButton>
+        </div>
+      </DialogTitle>
+      <DialogContent>
+        <FilterGroup
+          publisherValue={filters.by ? filters.by.split(',') : []}
+          queryValue={filters.q}
+          afterValue={filters.after ? dayjs(filters.after) : null}
+          beforeValue={filters.before ? dayjs(filters.before) : null}
+          onPublisherChange={handlePublisherChange}
+          onQueryChange={handleQueryChange}
+          onAfterChange={handleAfterChange}
+          onBeforeChange={handleBeforeChange}
+          className='mb-2'
+        />
+      </DialogContent>
+    </Dialog>
   </MainLayout>
 }

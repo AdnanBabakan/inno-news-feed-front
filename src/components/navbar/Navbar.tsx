@@ -13,14 +13,11 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
 
   return <div
     className={classNames([
-      'flex items-center fixed top-0 right-0 left-0 z-20 bg-white px-2 py-1',
+      'flex items-center fixed top-0 right-0 left-0 z-20 bg-white p-3',
       { 'shadow-xl': scrollHeight > 100 },
       className,
     ])}
   >
-    <IconButton color='black' aria-label='Menu' className='mr-1'>
-      <MenuIcon />
-    </IconButton>
     <div className='font-bold mr-1'>INR</div>
     <div className='text-xs text-gray-400'>| <span className='italic'>Inno News Reader</span></div>
     <div className='flex-grow' />
