@@ -12,6 +12,7 @@ import { parseParams } from '@/utils/ParamsParser'
 import _ from 'lodash'
 import FilterGroup from '@/components/content/search/FilterGroup'
 import dayjs from 'dayjs'
+import Publishers from '@/components/content/search/Publishers'
 
 export default function Index(): JSX.Element {
 
@@ -31,6 +32,10 @@ export default function Index(): JSX.Element {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const handlePublisherChange = (v) => {
+    setFilter('by', v.join(','))
+  }
+
   const handleQueryChange = _.debounce((e) => {
     setFilter('q', e.target.value)
   }, 500)
@@ -45,6 +50,7 @@ export default function Index(): JSX.Element {
 
   return <MainLayout>
     <FilterGroup
+      onPublisherChange={handlePublisherChange}
       onQueryChange={handleQueryChange}
       onAfterChange={handleAfterChange}
       onBeforeChange={handleBeforeChange}
