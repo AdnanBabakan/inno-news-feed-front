@@ -13,7 +13,7 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
 
   return <div
     className={classNames([
-      'flex items-center fixed top-0 right-0 left-0 z-50 bg-white px-2 py-1',
+      'flex items-center fixed top-0 right-0 left-0 z-20 bg-white px-2 py-1',
       { 'shadow-xl': scrollHeight > 100 },
       className,
     ])}

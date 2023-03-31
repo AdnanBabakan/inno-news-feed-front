@@ -2,10 +2,10 @@ import NewsSourcePropsObjectInterface from '@/components/content/newsSources/int
 
 export default interface PostPropsObjectInterface {
   id: string,
-  image: string,
+  thumbnail: string,
   title: string,
-  date: string,
+  published_at: string,
   excerpt: string
-  readingTime: string,
+  by: string,
   source: NewsSourcePropsObjectInterface,
 }
