@@ -33,7 +33,7 @@ export default function Index(): JSX.Element {
   }
 
   const handlePublisherChange = (v) => {
-    setFilter('by', v.join(','))
+    setFilter('by', v.length > 0 ? v.join(',') : null)
   }
 
   const handleQueryChange = _.debounce((e) => {

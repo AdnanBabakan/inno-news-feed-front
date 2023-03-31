@@ -18,6 +18,14 @@ export default function usePosts() {
   }
 
   const setFilter = (key, value) => {
+    if(value === null || value === '') {
+      delete filters[key]
+      setFilters({
+        ...filters
+      })
+      return
+    }
+
     setFilters({
       ...filters,
       [key]: value
