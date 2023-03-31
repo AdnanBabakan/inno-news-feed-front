@@ -103,7 +103,7 @@ export default function Index(): JSX.Element {
           onQueryChange={handleQueryChange}
           onAfterChange={handleAfterChange}
           onBeforeChange={handleBeforeChange}
-          className='mb-2'
+          className='mt-2'
         />
       </DialogContent>
     </Dialog>
