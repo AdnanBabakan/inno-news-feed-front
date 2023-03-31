@@ -10,6 +10,8 @@ import usePosts from '@/apis/posts'
 import SearchBar from '@/components/content/search/SearchBar'
 import { parseParams } from '@/utils/ParamsParser'
 import _ from 'lodash'
+import FilterGroup from '@/components/content/search/FilterGroup'
+import dayjs from 'dayjs'
 
 export default function Index(): JSX.Element {
 
@@ -29,12 +31,25 @@ export default function Index(): JSX.Element {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const handleSearchBarChange = _.debounce((e) => {
+  const handleQueryChange = _.debounce((e) => {
     setFilter('q', e.target.value)
   }, 500)
 
+  const handleAfterChange = (date: Date | null) => {
+    setFilter('after', dayjs(date).format('YYYY-MM-DD'))
+  }
+
+  const handleBeforeChange = (date: Date | null) => {
+    setFilter('before', dayjs(date).format('YYYY-MM-DD'))
+  }
+
   return <MainLayout>
-    <SearchBar onChange={handleSearchBarChange} />
+    <FilterGroup
+      onQueryChange={handleQueryChange}
+      onAfterChange={handleAfterChange}
+      onBeforeChange={handleBeforeChange}
+      className='mb-2'
+    />
     <PageTitle className='font-bold mb-4'>Discover</PageTitle>
     {
       loading ? <div className='flex justify-center my-2'>
@@ -50,9 +65,11 @@ export default function Index(): JSX.Element {
               }
             })}
           </div>
-          <div className='flex justify-center mt-4'>
+          {
+            pages > 1 ? <div className='flex justify-center mt-4'>
             <Pagination count={pages} page={currentPage} shape='rounded' onChange={handlePageChange} />
-          </div>
+            </div> : <></>
+          }
         </div> : <Alert severity='info'>No results found.</Alert>
       )
     }

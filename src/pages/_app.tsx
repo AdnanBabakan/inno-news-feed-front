@@ -8,8 +8,13 @@ import '@fontsource/roboto/700.css'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 TimeAgo.addDefaultLocale(en)
 
-export default function AppContainer({Component, pageProps}): JSX.Element {
-  return <Component {...pageProps} />
+export default function AppContainer({ Component, pageProps }): JSX.Element {
+  return <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <Component {...pageProps} />
+  </LocalizationProvider>
 }
