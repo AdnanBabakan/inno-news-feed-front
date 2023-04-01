@@ -11,14 +11,19 @@ import en from 'javascript-time-ago/locale/en'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
-import { UserContext, UserContextDefaultValue } from '@/contexts/UserContext'
+import { GlobalContext, GlobalContextDefaultValue } from '@/contexts/GlobalContext'
+import { useState } from 'react'
 
 TimeAgo.addDefaultLocale(en)
 
 export default function AppContainer({ Component, pageProps }): JSX.Element {
-  return <UserContext.Provider value={UserContextDefaultValue}>
+  const [token, setToken] = useState(null)
+  const [user, setUser] = useState(null)
+  const [notification, setNotification] = useState({})
+
+  return <GlobalContext.Provider value={{ token, setToken, user, setUser, notification, setNotification }}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Component {...pageProps} />
     </LocalizationProvider>
-  </UserContext.Provider>
+  </GlobalContext.Provider>
 }

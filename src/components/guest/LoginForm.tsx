@@ -3,17 +3,20 @@ import { Button, TextField } from '@mui/material'
 import useLogin from '@/apis/user'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import useNotifications from '@/apis/notifications'
 
 export default function LoginForm(props: React.ComponentProps<any>): JSX.Element {
   const { className } = props
 
   const { loading, handleLoginSubmit, validations } = useLogin()
 
+  const { sendNotification } = useNotifications()
+
   const submitLogin = (data) => {
     handleLoginSubmit(data)
       .then()
       .catch(({ response }) => {
-        console.log(response.data)
+        sendNotification('Wrong credentials! Please try again.', 'error')
       })
   }
 

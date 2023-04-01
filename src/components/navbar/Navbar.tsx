@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { Button, Dialog, DialogContent, DialogTitle, Divider } from '@mui/material'
 import { AccountCircleTwoTone as AccountCircleTwoToneIcon } from '@mui/icons-material'
@@ -6,7 +6,7 @@ import useScrollHeight from '@/components/misc/ScrollHeight'
 import { firstCap } from '@/utils/StringUtils'
 import LoginForm from '@/components/guest/LoginForm'
 import SignUpForm from '@/components/guest/SignUpForm'
-import { UserContext } from '@/contexts/UserContext'
+import { GlobalContext } from '@/contexts/GlobalContext'
 
 export default function Navbar(props: React.PropsWithChildren): JSX.Element {
   const { className } = props
@@ -19,8 +19,6 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
   }
 
   const { scrollHeight } = useScrollHeight()
-
-  const user = useContext(UserContext)
 
   return <div
     className={classNames([
