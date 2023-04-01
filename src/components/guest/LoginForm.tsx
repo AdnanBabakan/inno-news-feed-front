@@ -4,6 +4,7 @@ import useLogin from '@/apis/user'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import useNotifications from '@/apis/notifications'
+import { humanReadableMessage } from '@/utils/MessageUtils'
 
 export default function LoginForm(props: React.ComponentProps<any>): JSX.Element {
   const { className } = props
@@ -14,9 +15,11 @@ export default function LoginForm(props: React.ComponentProps<any>): JSX.Element
 
   const submitLogin = (data) => {
     handleLoginSubmit(data)
-      .then()
+      .then(({ data }) => {
+        sendNotification(data.token, 'error')
+      })
       .catch(({ response }) => {
-        sendNotification('Wrong credentials! Please try again.', 'error')
+        sendNotification(humanReadableMessage(response.data.message), 'error')
       })
   }
 
@@ -55,7 +58,6 @@ export default function LoginForm(props: React.ComponentProps<any>): JSX.Element
       color='primary'
       className='w-full'
       onClick={handleSubmit(submitLogin)}
-      disabled={loading}
     >
       Login
     </Button>
