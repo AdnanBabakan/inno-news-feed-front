@@ -19,6 +19,7 @@ import FilterGroup from '@/components/content/search/FilterGroup'
 import dayjs from 'dayjs'
 import { TuneTwoTone as TuneTwoToneIcon, CloseTwoTone as CloseTwoToneIcon } from '@mui/icons-material'
 import { GlobalContext } from '@/contexts/GlobalContext'
+import PostsGrid from '@/components/content/PostsGrid'
 
 export default function Index(): JSX.Element {
   const [filtersDialogOpen, setFiltersDialogOpen] = useState(false)
@@ -70,15 +71,7 @@ export default function Index(): JSX.Element {
         <CircularProgress />
       </div> : (
         posts.length > 0 ? <div>
-          <div className='grid gap-2 grid-cols-4'>
-            {posts.map((post, index) => {
-              if ([0, 1].includes((index + 6) % 6)) {
-                return <Post post={post} key={post.id} className='col-span-4 md:col-span-2' />
-              } else {
-                return <PostSmall post={post} key={post.id} className='col-span-2 md:col-span-1' />
-              }
-            })}
-          </div>
+          <PostsGrid posts={posts} />
           {
             pages > 1 ? <div className='flex justify-center mt-4'>
             <Pagination count={pages} page={currentPage} shape='rounded' onChange={handlePageChange} />

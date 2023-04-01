@@ -18,11 +18,24 @@ import PostSmall from '@/components/content/post/PostSmall'
 import FilterGroup from '@/components/content/search/FilterGroup'
 import dayjs from 'dayjs'
 import _ from 'lodash'
+import PostsGrid from '@/components/content/PostsGrid'
 
 export default function MyFeed(): JSX.Element {
   const [filtersDialogOpen, setFiltersDialogOpen] = useState(false)
 
-  const { getFeedPosts, loading, posts, pages, currentPage, setCurrentPage, getFeed, feed, filters, setFilter, saveFeedBy } = useUser()
+  const {
+    getFeedPosts,
+    loading,
+    posts,
+    pages,
+    currentPage,
+    setCurrentPage,
+    getFeed,
+    feed,
+    filters,
+    setFilter,
+    saveFeedBy,
+  } = useUser()
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value)
@@ -64,7 +77,8 @@ export default function MyFeed(): JSX.Element {
       </IconButton>
     </div>
     <div className='mb-3'>
-      { feed.by.length > 0 ? feed.by.split(',').map(item => <Chip key={item.key} label={item} className='mr-2' />) : <></> }
+      {feed.by.length > 0 ? feed.by.split(',').map(item => <Chip key={item.key} label={item}
+                                                                 className='mr-2' />) : <></>}
     </div>
     <Divider className='mb-3' />
     {
@@ -72,15 +86,7 @@ export default function MyFeed(): JSX.Element {
         <CircularProgress />
       </div> : (
         posts.length > 0 ? <div>
-          <div className='grid gap-2 grid-cols-2'>
-            {posts.map((post, index) => {
-              if ([0, 1, 2].includes((index + 5) % 5)) {
-                return <Post post={post} key={post.id} className='col-span-2' />
-              } else {
-                return <PostSmall post={post} key={post.id} className='col-span-1' />
-              }
-            })}
-          </div>
+          <PostsGrid posts={posts} />
           {
             pages > 1 ? <div className='flex justify-center mt-4'>
               <Pagination count={pages} page={currentPage} shape='rounded' onChange={handlePageChange} />
