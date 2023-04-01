@@ -6,5 +6,5 @@ export function humanReadableMessage(message: string): string {
     USER_AUTHENTICATED_SUCCESSFULLY: 'You\'ve logged in successfully.'
   }
 
-  return message.hasOwnProperty(message) ? messages[message] : message
+  return Object.keys(messages).includes(message) ? messages[message] : message
 }

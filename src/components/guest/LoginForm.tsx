@@ -1,31 +1,36 @@
 import React from 'react'
 import { Button, TextField } from '@mui/material'
-import useLogin from '@/apis/user'
+import { useLogin, useUser } from '@/apis/user'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import useNotifications from '@/apis/notifications'
 import { humanReadableMessage } from '@/utils/MessageUtils'
 
 export default function LoginForm(props: React.ComponentProps<any>): JSX.Element {
-  const { className } = props
+  const { onSuccess, onError, className } = props
 
-  const { loading, handleLoginSubmit, validations } = useLogin()
+  const { handleLoginSubmit, validations } = useLogin()
 
   const { sendNotification } = useNotifications()
+
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(validations),
+  })
+
+  const user = useUser()
 
   const submitLogin = (data) => {
     handleLoginSubmit(data)
       .then(({ data }) => {
-        sendNotification(data.token, 'error')
+        sendNotification('Logged in successfully.', 'success')
+        user.setToken(data.token)
+        onSuccess()
       })
       .catch(({ response }) => {
         sendNotification(humanReadableMessage(response.data.message), 'error')
+        onError()
       })
   }
-
-  const { control, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(validations)
-  })
 
   // @ts-ignore
   return <div className={className}>

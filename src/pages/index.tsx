@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MainLayout from '@/layouts/usable/MainLayout'
 import PageTitle from '@/components/general/PageTitle'
 import Post from '@/components/content/post/Post'
@@ -18,6 +18,7 @@ import _ from 'lodash'
 import FilterGroup from '@/components/content/search/FilterGroup'
 import dayjs from 'dayjs'
 import { TuneTwoTone as TuneTwoToneIcon, CloseTwoTone as CloseTwoToneIcon } from '@mui/icons-material'
+import { GlobalContext } from '@/contexts/GlobalContext'
 
 export default function Index(): JSX.Element {
   const [filtersDialogOpen, setFiltersDialogOpen] = useState(false)
@@ -53,6 +54,8 @@ export default function Index(): JSX.Element {
   const handleBeforeChange = (date: Date | null) => {
     setFilter('before', dayjs(date).format('YYYY-MM-DD'))
   }
+
+  const global = useContext(GlobalContext)
 
   return <MainLayout>
     <div className='flex justify-between items-center'>

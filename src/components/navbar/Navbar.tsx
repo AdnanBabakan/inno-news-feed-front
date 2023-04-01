@@ -20,6 +20,14 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
 
   const { scrollHeight } = useScrollHeight()
 
+  const signUpSuccessHandler = () => {
+    setGuestModalMode('login')
+  }
+
+  const loginSuccessHandler = () => {
+    setGuestModelOpen(false)
+  }
+
   return <div
     className={classNames([
       'flex items-center fixed top-0 right-0 left-0 z-20 bg-white p-3',
@@ -40,7 +48,7 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
       <DialogContent>
         <div className='mt-2'>
           {
-            guestModalMode === 'login' ? <LoginForm /> : <SignUpForm />
+            guestModalMode === 'login' ? <LoginForm onSuccess={loginSuccessHandler} onError={() => {}} /> : <SignUpForm onSuccess={signUpSuccessHandler} onError={() => {}} />
           }
           <Divider className='my-2'><span className='text-gray-400 text-sm'>OR</span></Divider>
           <Button className='w-full' onClick={toggleGuestModalMode}>
