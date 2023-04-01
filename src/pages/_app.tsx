@@ -20,8 +20,9 @@ export default function AppContainer({ Component, pageProps }): JSX.Element {
   const [token, setToken] = useState(null)
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState({})
+  const [feed, setFeed] = useState(null)
 
-  return <GlobalContext.Provider value={{ token, setToken, user, setUser, notification, setNotification }}>
+  return <GlobalContext.Provider value={{ token, setToken, user, setUser, notification, setNotification, feed, setFeed }}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Component {...pageProps} />
     </LocalizationProvider>

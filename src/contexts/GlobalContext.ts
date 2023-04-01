@@ -3,10 +3,16 @@ import { createContext, useState } from 'react'
 interface GlobalContextType {
   token: string | null,
   setToken: (token: string | null) => void,
-  user: object | null,
+  user: {
+    first_name: string,
+    last_name: string,
+    email: string,
+  } | null,
   setUser: (user: object | null) => void,
   notification: object | null,
-  setNotification: (notifications: object | null) => void
+  setNotification: (notifications: object | null) => void,
+  feed: object | null,
+  setFeed: (feed: object | null) => void,
 }
 
 export const GlobalContextDefaultValue : GlobalContextType = {
@@ -15,7 +21,9 @@ export const GlobalContextDefaultValue : GlobalContextType = {
   user: null,
   setUser: () => {},
   notification: null,
-  setNotification: () => {}
+  setNotification: () => {},
+  feed: null,
+  setFeed: () => {},
 }
 
 export const GlobalContext = createContext<GlobalContextType>(GlobalContextDefaultValue)

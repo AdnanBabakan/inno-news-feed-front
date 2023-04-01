@@ -25,10 +25,9 @@ export default function usePosts() {
       })
       return
     }
-
     setFilters({
       ...filters,
-      [key]: value
+      [key]: value,
     })
   }
 

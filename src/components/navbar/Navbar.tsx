@@ -7,6 +7,7 @@ import { firstCap } from '@/utils/StringUtils'
 import LoginForm from '@/components/guest/LoginForm'
 import SignUpForm from '@/components/guest/SignUpForm'
 import { GlobalContext } from '@/contexts/GlobalContext'
+import UserSection from '@/components/navbar/UserSection'
 
 export default function Navbar(props: React.PropsWithChildren): JSX.Element {
   const { className } = props
@@ -41,8 +42,7 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
     <div className='text-xs text-gray-400'>| <span className='italic'>Inno News Reader</span></div>
     <div className='flex-grow' />
     {
-      global.user ? <Button startIcon={<AccountCircleTwoToneIcon />} variant='outlined' size='small'>Hi, { global.user.first_name }</Button> :
-        <Button startIcon={<AccountCircleTwoToneIcon />} variant='outlined' size='small'
+      global.user ? <UserSection /> : <Button startIcon={<AccountCircleTwoToneIcon />} variant='outlined' size='small'
                 onClick={() => setGuestModelOpen(true)}>
           Sign in
         </Button>
