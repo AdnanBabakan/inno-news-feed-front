@@ -28,6 +28,8 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
     setGuestModelOpen(false)
   }
 
+  const global = useContext(GlobalContext)
+
   return <div
     className={classNames([
       'flex items-center fixed top-0 right-0 left-0 z-20 bg-white p-3',
@@ -38,21 +40,26 @@ export default function Navbar(props: React.PropsWithChildren): JSX.Element {
     <div className='font-bold mr-1'>INR</div>
     <div className='text-xs text-gray-400'>| <span className='italic'>Inno News Reader</span></div>
     <div className='flex-grow' />
-    <Button aria-label='account' startIcon={<AccountCircleTwoToneIcon />} variant='outlined' size='small'
-            onClick={() => setGuestModelOpen(true)}>
-      Sign in
-    </Button>
+    {
+      global.user ? <Button startIcon={<AccountCircleTwoToneIcon />} variant='outlined' size='small'>Hi, { global.user.first_name }</Button> :
+        <Button startIcon={<AccountCircleTwoToneIcon />} variant='outlined' size='small'
+                onClick={() => setGuestModelOpen(true)}>
+          Sign in
+        </Button>
+    }
 
     <Dialog open={guestModelOpen} onClose={() => setGuestModelOpen(false)}>
       <DialogTitle>{firstCap(guestModalMode)}</DialogTitle>
       <DialogContent>
         <div className='mt-2'>
           {
-            guestModalMode === 'login' ? <LoginForm onSuccess={loginSuccessHandler} onError={() => {}} /> : <SignUpForm onSuccess={signUpSuccessHandler} onError={() => {}} />
+            guestModalMode === 'login' ? <LoginForm onSuccess={loginSuccessHandler} onError={() => {
+            }} /> : <SignUpForm onSuccess={signUpSuccessHandler} onError={() => {
+            }} />
           }
           <Divider className='my-2'><span className='text-gray-400 text-sm'>OR</span></Divider>
           <Button className='w-full' onClick={toggleGuestModalMode}>
-            { guestModalMode === 'login' ? 'Sign up' : 'Login' }
+            {guestModalMode === 'login' ? 'Sign up' : 'Login'}
           </Button>
         </div>
       </DialogContent>

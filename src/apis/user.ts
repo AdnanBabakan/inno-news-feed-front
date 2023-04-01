@@ -61,7 +61,19 @@ export function useUser() {
   const global = useContext(GlobalContext)
 
   const setToken = (token) => {
-    global.setToken(token)
+    axiosInstance.defaults.headers.common = {
+      'Authorization': 'Bearer ' + token
+    }
+    setUser()
+  }
+
+  const setUser = async () => {
+    try {
+      const response = await axiosInstance.get('/x-user')
+      global.setUser(response.data)
+    } catch(e) {
+      global.setToken(null)
+    }
   }
 
   return {
