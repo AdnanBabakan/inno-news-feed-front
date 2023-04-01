@@ -70,12 +70,12 @@ export default function Index(): JSX.Element {
         <CircularProgress />
       </div> : (
         posts.length > 0 ? <div>
-          <div className='grid gap-2 grid-cols-2'>
+          <div className='grid gap-2 grid-cols-4'>
             {posts.map((post, index) => {
-              if ([0, 1, 2].includes((index + 5) % 5)) {
-                return <Post post={post} key={post.id} className='col-span-2' />
+              if ([0, 1].includes((index + 6) % 6)) {
+                return <Post post={post} key={post.id} className='col-span-4 md:col-span-2' />
               } else {
-                return <PostSmall post={post} key={post.id} className='col-span-1' />
+                return <PostSmall post={post} key={post.id} className='col-span-2 md:col-span-1' />
               }
             })}
           </div>

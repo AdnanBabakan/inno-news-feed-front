@@ -5,6 +5,8 @@ import Footer from '@/components/footer/Footer'
 import Notifications from '@/components/general/Notifications'
 import { useUser } from '@/apis/user'
 
+import style from './MainLayout.module.scss'
+
 export default function MainLayout(props: React.PropsWithChildren): JSX.Element {
   const { children } = props
 
@@ -15,11 +17,13 @@ export default function MainLayout(props: React.PropsWithChildren): JSX.Element 
   }, [])
 
   return <DefaultLayout>
-    <Navbar />
-    <div className='px-4 mt-16'>
-      {children}
+    <div id={style.rowContainer}>
+      <Navbar />
+      <div className='px-4 mt-16'>
+        {children}
+      </div>
+      <Footer />
+      <Notifications />
     </div>
-    <Footer />
-    <Notifications />
   </DefaultLayout>
 }
