@@ -19,6 +19,7 @@ import FilterGroup from '@/components/content/search/FilterGroup'
 import dayjs from 'dayjs'
 import _ from 'lodash'
 import PostsGrid from '@/components/content/PostsGrid'
+import Head from 'next/head'
 
 export default function MyFeed(): JSX.Element {
   const [filtersDialogOpen, setFiltersDialogOpen] = useState(false)
@@ -70,6 +71,9 @@ export default function MyFeed(): JSX.Element {
   }, [filters])
 
   return <MainLayout>
+    <Head>
+      <title>My Feed</title>
+    </Head>
     <div className='flex justify-between items-center'>
       <PageTitle className='font-bold mb-4'>My Feed</PageTitle>
       <IconButton onClick={() => setFiltersDialogOpen(true)}>

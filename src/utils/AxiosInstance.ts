@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // @ts-ignore
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000/v1',
+  baseURL: 'https://inno-api.iran.liara.run/v1',
 })
 
 export default axiosInstance

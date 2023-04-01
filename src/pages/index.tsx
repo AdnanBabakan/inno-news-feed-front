@@ -20,6 +20,7 @@ import dayjs from 'dayjs'
 import { TuneTwoTone as TuneTwoToneIcon, CloseTwoTone as CloseTwoToneIcon } from '@mui/icons-material'
 import { GlobalContext } from '@/contexts/GlobalContext'
 import PostsGrid from '@/components/content/PostsGrid'
+import Head from 'next/head'
 
 export default function Index(): JSX.Element {
   const [filtersDialogOpen, setFiltersDialogOpen] = useState(false)
@@ -59,6 +60,9 @@ export default function Index(): JSX.Element {
   const global = useContext(GlobalContext)
 
   return <MainLayout>
+    <Head>
+      <title>Home</title>
+    </Head>
     <div className='flex justify-between items-center'>
       <PageTitle className='font-bold mb-4'>Discover</PageTitle>
       <IconButton onClick={() => setFiltersDialogOpen(true)}>
